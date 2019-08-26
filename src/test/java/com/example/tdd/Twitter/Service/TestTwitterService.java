@@ -4,7 +4,9 @@ import com.example.tdd.Twitter.Model.Tweet;
 import com.example.tdd.Twitter.Repository.TwitterRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -25,6 +27,9 @@ public class TestTwitterService {
 
     private TwitterService twitterService;
 
+    @Rule
+    public ExpectedException expectedException=ExpectedException.none();
+
     @Before
     public void setUp() {
         twitterService=new TwitterService(twitterRepository);
@@ -41,6 +46,20 @@ public class TestTwitterService {
         assertThat(tweet.get().getMessage().equals("Hello"));
 
         //Assertions.assertThat(tweet.get().getId().equals("id"));
+
+    }
+
+    @Test
+    public void test_tweetNotFound() throws Exception {
+        when(twitterRepository.findById(anyString()))
+                .thenReturn(null);
+
+        expectedException.expect(NullPointerException.class);
+
+        Tweet tweet=twitterService.getTweet("123").get();
+        //Assertions.assertThat(tweet.getId().equals("id"));
+
+
 
     }
 
