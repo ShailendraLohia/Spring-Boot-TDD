@@ -2,6 +2,7 @@ package com.example.tdd.Twitter.Service;
 
 import com.example.tdd.Twitter.Model.Tweet;
 import com.example.tdd.Twitter.Repository.TwitterRepository;
+import javassist.NotFoundException;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Rule;
@@ -54,7 +55,7 @@ public class TestTwitterService {
         when(twitterRepository.findById(anyString()))
                 .thenReturn(null);
 
-        expectedException.expect(NullPointerException.class);
+        expectedException.expect(NotFoundException.class);
 
         Tweet tweet=twitterService.getTweet("123").get();
         //Assertions.assertThat(tweet.getId().equals("id"));

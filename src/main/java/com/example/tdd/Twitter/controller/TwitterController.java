@@ -3,6 +3,7 @@ package com.example.tdd.Twitter.controller;
 import com.example.tdd.Twitter.Model.Tweet;
 import com.example.tdd.Twitter.Service.TwitterService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -20,7 +21,7 @@ public class TwitterController {
     private TwitterService twitterService;
 
     @GetMapping("/{tweetId}")
-    public ResponseEntity<Tweet> addNewTweet(@PathVariable String tweetId) {
+    public ResponseEntity<Tweet> addNewTweet(@PathVariable String tweetId) throws Exception {
 
         Optional<Tweet> tweet=twitterService.getTweet(tweetId);
         //Tweet t= tweet.get();
