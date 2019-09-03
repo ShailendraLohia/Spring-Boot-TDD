@@ -26,24 +26,11 @@ public class VehicleController {
     @PostMapping
     public ResponseEntity<VehicleRequest> registerNewVehicle(
             @Valid
-            @RequestBody VehicleRequest vehicleRequest) throws Exception {
+            @RequestBody VehicleRequest vehicleRequest) throws ConstraintViolationException {
 
         VehicleRequest vehicleRequest1 = vehicleService.addVehicle(vehicleRequest);
         return new ResponseEntity<>(vehicleRequest1, HttpStatus.CREATED);
     }
-
-
-    @PostMapping("/vehicle")
-
-    public ResponseEntity<VehicleData> addVehicle(@RequestBody VehicleData vehicleData) {
-        return new ResponseEntity<>(vehicleData,HttpStatus.CREATED);
-    }
-
-//    @PostMapping("/vehicle")
-//
-//    public ResponseEntity<VehicleData> addVehicle(@Valid @RequestBody VehicleData vehicleData) {
-//        return new ResponseEntity<>(vehicleData,HttpStatus.CREATED);
-//    }
 
     @GetMapping("/{vehicleId}")
     public ResponseEntity<VehicleRequest> getVehicleDetial(
@@ -52,5 +39,8 @@ public class VehicleController {
 
         return new ResponseEntity(vehicleService.getVehicleData(vehicleId),HttpStatus.OK);
     }
+
+
+
 
 }

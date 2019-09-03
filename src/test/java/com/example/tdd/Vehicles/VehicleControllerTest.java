@@ -1,4 +1,4 @@
-package com.example.tdd.Twitter.Vehicles;
+package com.example.tdd.Vehicles;
 
 import com.example.tdd.Vehicles.Exception.VehicleNotFoundException;
 import com.example.tdd.Vehicles.Model.VehicleData;
@@ -19,7 +19,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import javax.validation.ConstraintViolationException;
+
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -138,8 +138,8 @@ public class VehicleControllerTest {
     @Test
     public void testInvalidData_InPathVariable() throws Exception {
         mvc.perform(get("/vehicles/123-abc"))
-                .andExpect(status().isBadRequest());
-                //.andExpect(jsonPath("status").value(400));
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("status").value("BAD_REQUEST"));
     }
 
 }

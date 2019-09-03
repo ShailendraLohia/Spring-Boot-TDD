@@ -3,7 +3,6 @@ package com.example.tdd.Twitter.Service;
 import com.example.tdd.Twitter.Model.Tweet;
 import com.example.tdd.Twitter.Repository.TwitterRepository;
 import javassist.NotFoundException;
-import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -11,8 +10,6 @@ import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.Optional;
 
