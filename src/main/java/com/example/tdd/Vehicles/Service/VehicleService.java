@@ -9,4 +9,11 @@ public class VehicleService {
     public VehicleRequest addVehicle(VehicleRequest vehicleRequest) {
         return vehicleRequest;
     }
+
+    public VehicleRequest getVehicleData(String vehicleId) {
+
+        VehicleRequest vehicleRequest = new VehicleRequest();
+
+        return vehicleRequest;
+    }
 }

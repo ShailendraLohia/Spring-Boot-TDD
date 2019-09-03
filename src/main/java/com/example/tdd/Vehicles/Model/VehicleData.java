@@ -12,8 +12,8 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class VehicleData {
 
-//    @NotEmpty(message="data cannot be Empty")
-    @NotNull(message="data cannot be null")
+    @NotEmpty(message="data cannot be Empty")
+    //@NotNull(message="data cannot be null")
     private String VIN;
     private String model;
     private String yearBuilt;
