@@ -1,19 +1,38 @@
 package com.example.tdd.Vehicles.Service;
 
+import com.example.tdd.Vehicles.Exception.VehicleNotFoundException;
+import com.example.tdd.Vehicles.Model.VehicleData;
 import com.example.tdd.Vehicles.Model.VehicleRequest;
+import com.example.tdd.Vehicles.Repository.VehicleRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class VehicleService {
 
+//    @Autowired
+    public VehicleRepository vehicleRepository;
+
+    public VehicleService(VehicleRepository vehicleRepository) {
+        this.vehicleRepository = vehicleRepository;
+    }
+
     public VehicleRequest addVehicle(VehicleRequest vehicleRequest) {
-        return vehicleRequest;
+         vehicleRepository.save(vehicleRequest.getVehicles());
+         return vehicleRequest;
     }
 
     public VehicleRequest getVehicleData(String vehicleId) {
+        //vehicleRepository.
+        Optional<VehicleData> vehicleData = vehicleRepository.findById(vehicleId);
 
-        VehicleRequest vehicleRequest = new VehicleRequest();
+//        if(null==vehicleRequest.get())
+        if(vehicleData==null)
+            throw new VehicleNotFoundException();
 
+        VehicleRequest vehicleRequest=new VehicleRequest(vehicleData.get());
         return vehicleRequest;
     }
 }

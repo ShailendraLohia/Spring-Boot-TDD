@@ -4,16 +4,19 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class VehicleData {
 
+
     @NotEmpty(message="data cannot be Empty")
-    //@NotNull(message="data cannot be null")
+    @Id
     private String VIN;
     private String model;
     private String yearBuilt;
