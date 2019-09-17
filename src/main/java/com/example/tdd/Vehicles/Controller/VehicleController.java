@@ -41,6 +41,13 @@ public class VehicleController {
     }
 
 
+    @PutMapping("/{vehicleId}")
+    public ResponseEntity<VehicleRequest> updateVehicleDetails(
+            @RequestBody VehicleRequest vehicleRequest,
+            @Valid @Pattern(regexp = "[(a-zA-Z0-9)]+",message="Enter valid data")@PathVariable String vehicleId ) {
+
+        return new ResponseEntity<>(vehicleService.updateVehicleData(vehicleRequest,vehicleId),HttpStatus.OK);
+    }
 
 
 }

@@ -26,8 +26,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -144,6 +143,39 @@ public class VehicleControllerTest {
         mvc.perform(get("/vehicles/123-abc"))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("status").value("BAD_REQUEST"));
+    }
+
+    @Test
+    public void testUpdateVehicleData() throws Exception {
+
+        VehicleData vehicleData = new VehicleData("123qrt","Honda","2010",2000.00);
+        VehicleRequest vehicleRequest = new VehicleRequest(vehicleData);
+
+        given(vehicleService.updateVehicleData(any(),anyString())).willReturn(vehicleRequest);
+        String vehicleJson=jacksonTester.write(vehicleRequest).getJson();
+
+        String vehicleId="123abc";
+        mvc.perform(put("/vehicles/{vehicleId}", vehicleId)
+                .content(vehicleJson)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.vehicles.vin",Matchers.is("123qrt")));
+    }
+
+    @Test
+    public void testUpdateVehicle_validationError() throws Exception {
+        VehicleData vehicleData = new VehicleData("123qrt","Honda","2010",2000.00);
+        VehicleRequest vehicleRequest = new VehicleRequest(vehicleData);
+
+        given(vehicleService.updateVehicleData(any(),anyString())).willReturn(vehicleRequest);
+        String vehicleJson=jacksonTester.write(vehicleRequest).getJson();
+
+        String vehicleId="$123abc";
+
+        mvc.perform(put("/vehicles/{vehicleId}",vehicleId)
+            .content(vehicleJson)
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isBadRequest());
     }
 
 }

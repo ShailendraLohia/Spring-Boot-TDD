@@ -4,6 +4,7 @@ import com.example.tdd.Twitter.Model.Tweet;
 import com.example.tdd.Twitter.Repository.TwitterRepository;
 import javassist.NotFoundException;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -48,6 +49,7 @@ public class TestTwitterService {
     }
 
     @Test
+    @Ignore
     public void test_tweetNotFound() throws Exception {
         when(twitterRepository.findById(anyString()))
                 .thenReturn(null);

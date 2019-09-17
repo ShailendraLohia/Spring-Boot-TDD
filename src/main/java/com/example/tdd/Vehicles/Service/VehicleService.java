@@ -35,4 +35,8 @@ public class VehicleService {
         VehicleRequest vehicleRequest=new VehicleRequest(vehicleData.get());
         return vehicleRequest;
     }
+
+    public VehicleRequest updateVehicleData(VehicleRequest vehicleRequest,String vehicleId) {
+        return vehicleRequest;
+    }
 }

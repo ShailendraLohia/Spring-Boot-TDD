@@ -3,6 +3,7 @@ package com.example.tdd.Vehicles;
 import com.example.tdd.Vehicles.Model.VehicleData;
 import com.example.tdd.Vehicles.Repository.VehicleRepository;
 import org.assertj.core.api.Assertions;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,7 @@ public class VehicleRepositoryTest {
         Assertions.assertThat(vehicleData.getVIN().equals("123abc"));
 
     }
+    @Ignore
     @Test
     public void testFindByIdMethod2() throws Exception {
 //         entityManager.persist(
