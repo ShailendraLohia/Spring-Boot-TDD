@@ -5,9 +5,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                withGradle(gradle: 'gradle 5.4') {
-                    sh 'gradle clean build'
-                }
+                sh './gradlew clean build'
             }
         }
         stage('Deploy') {
