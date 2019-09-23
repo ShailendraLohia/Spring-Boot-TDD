@@ -29,8 +29,10 @@ public class VehicleService {
         Optional<VehicleData> vehicleData = vehicleRepository.findById(vehicleId);
 
 //        if(null==vehicleRequest.get())
-        if(vehicleData==null)
+        if(!vehicleData.isPresent())
             throw new VehicleNotFoundException();
+
+        //vehicleData.empty()
 
         VehicleRequest vehicleRequest=new VehicleRequest(vehicleData.get());
         return vehicleRequest;

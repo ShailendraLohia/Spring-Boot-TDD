@@ -69,7 +69,7 @@ public class VehicleServiceTest {
     @Test
     public void testGetVehicleMethod_NotFoundException() throws Exception {
 
-        when(mockVehicleRepository.findById(anyString())).thenReturn(null);
+        when(mockVehicleRepository.findById(anyString())).thenReturn(Optional.empty());
         expectedException.expect(VehicleNotFoundException.class);
 
         vehicleService.getVehicleData("123abc");

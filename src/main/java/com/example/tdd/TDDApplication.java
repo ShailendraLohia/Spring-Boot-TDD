@@ -7,10 +7,16 @@ import com.example.tdd.Vehicles.Repository.VehicleRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.annotation.Order;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
+//@ComponentScan(basePackages="com.example.tdd")
+//@EntityScan(basePackages="com.example.tdd")
+//@EnableJpaRepositories(basePackages="com.example.tdd")
 public class TDDApplication {
     public static void main(String[] args) {
         SpringApplication.run(TDDApplication.class,args);

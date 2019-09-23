@@ -1,0 +1,6 @@
+services:
+  - Dev-db
+
+applications:
+  - name: springbootPCFApp
+    path: build/libs/spring-boot-tdd-1.0-SNAPSHOT.jar
