@@ -49,5 +49,10 @@ public class VehicleController {
         return new ResponseEntity<>(vehicleService.updateVehicleData(vehicleRequest,vehicleId),HttpStatus.OK);
     }
 
+    @GetMapping
+    public String randomMethod() {
+        return "Hello";
+    }
+
 
 }
