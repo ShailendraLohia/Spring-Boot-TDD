@@ -68,7 +68,7 @@ public class VehiclePriceControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
-    @Test
+    @Test // TODO API not found error not working
     public void testAddVehicle_NotFoundException() throws Exception {
         VehiclePrice vehiclePrice=new VehiclePrice("","2002",2000.0);
         VehiclePriceDetails vehiclePriceDetails=new VehiclePriceDetails(vehiclePrice);
@@ -79,6 +79,6 @@ public class VehiclePriceControllerTest {
                 .content(data)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
-                //.andExpect(jsonPath("status").value("NOT_FOUND"));
+               // .andExpect(jsonPath("$.status").value("NOT_FOUND"));
     }
 }

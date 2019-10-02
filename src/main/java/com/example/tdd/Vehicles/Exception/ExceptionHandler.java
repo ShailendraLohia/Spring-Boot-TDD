@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import com.example.tdd.Vehicles.Model.Error;
+import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
@@ -67,6 +68,20 @@ public class ExceptionHandler extends ResponseEntityExceptionHandler {
 
 
     }
+    @Override
+    protected ResponseEntity<Object> handleNoHandlerFoundException(
+            NoHandlerFoundException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        String errorMessage = "No handler found for " + ex.getHttpMethod() + " " + ex.getRequestURL();
+
+        List<String> errors = new ArrayList<>();
+        errors.add(errorMessage);
+
+
+
+        Error apiError = new Error(HttpStatus.NOT_FOUND,errors,new Date());
+        return new ResponseEntity<Object>(apiError, new HttpHeaders(), apiError.getStatus());
+    }
+
     @org.springframework.web.bind.annotation.ExceptionHandler(value = {VehicleNotFoundException.class,
             VehiclePriceNotFoundException.class, NotFoundException.class})
     @ResponseStatus(HttpStatus.NOT_FOUND)
