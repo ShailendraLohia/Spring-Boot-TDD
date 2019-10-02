@@ -1,5 +1,6 @@
 package com.example.tdd.Vehicles.Exception;
 
+import javassist.NotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -66,5 +67,16 @@ public class ExceptionHandler extends ResponseEntityExceptionHandler {
 
 
     }
+    @org.springframework.web.bind.annotation.ExceptionHandler(value = {VehicleNotFoundException.class,
+            VehiclePriceNotFoundException.class, NotFoundException.class})
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    protected ResponseEntity<Object> handleNotFoundException(Exception ex, WebRequest request) {
+        List<String> errors = new ArrayList<>();
+        errors.add("This APi doesn't exist or is unreachable");
+
+        Error error= new Error(HttpStatus.NOT_FOUND,errors,new Date());
+        return new ResponseEntity<>(error,HttpStatus.NOT_FOUND);
+    }
+
 }
 

@@ -30,7 +30,7 @@ public class VehicleService {
 
 //        if(null==vehicleRequest.get())
         if(!vehicleData.isPresent())
-            throw new VehicleNotFoundException();
+            throw new VehicleNotFoundException("Vehicle Not Found");
 
         //vehicleData.empty()
 

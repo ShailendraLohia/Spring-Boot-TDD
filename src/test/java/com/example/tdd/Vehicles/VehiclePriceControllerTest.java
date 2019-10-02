@@ -1,6 +1,8 @@
 package com.example.tdd.Vehicles;
 
 import com.example.tdd.Vehicles.Controller.VehiclePriceController;
+import com.example.tdd.Vehicles.Exception.VehicleNotFoundException;
+import com.example.tdd.Vehicles.Exception.VehiclePriceNotFoundException;
 import com.example.tdd.Vehicles.Model.VehiclePrice;
 import com.example.tdd.Vehicles.Model.VehiclePriceDetails;
 import com.example.tdd.Vehicles.Service.VehiclePriceService;
@@ -20,8 +22,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(VehiclePriceController.class)
@@ -78,5 +79,6 @@ public class VehiclePriceControllerTest {
                 .content(data)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
+                //.andExpect(jsonPath("status").value("NOT_FOUND"));
     }
 }

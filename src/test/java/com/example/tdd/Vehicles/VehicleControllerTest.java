@@ -124,7 +124,7 @@ public class VehicleControllerTest {
 
     @Test
     public void testGetVehicleNotFound() throws Exception {
-        given(vehicleService.getVehicleData(anyString())).willThrow(new VehicleNotFoundException());
+        given(vehicleService.getVehicleData(anyString())).willThrow(new VehicleNotFoundException("exception"));
         mvc.perform(get("/vehicles/123abc"))
                 .andExpect(status().isNotFound());
     }

@@ -91,7 +91,7 @@ public class TwitterControllerTest {
                .andExpect(status().is4xxClientError()) ;
     }
 
-    // Empty body: TODO: What http staus code needs to be returned?
+    // Empty body: TODO: What http status code needs to be returned?
     @Test
     public void test_emptyRequestBody() throws Exception {
 
