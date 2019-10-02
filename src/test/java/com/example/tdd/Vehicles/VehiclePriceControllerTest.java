@@ -66,6 +66,7 @@ public class VehiclePriceControllerTest {
                 .content(data)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
+                //.andExpect(jsonPath("$.vehicles.status",Matchers.is("BAD_REQUEST")));
     }
 
     @Test // TODO API not found error not working
@@ -81,4 +82,5 @@ public class VehiclePriceControllerTest {
                 .andExpect(status().isNotFound());
                // .andExpect(jsonPath("$.status").value("NOT_FOUND"));
     }
+
 }

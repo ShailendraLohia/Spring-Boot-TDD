@@ -2,6 +2,7 @@ package com.example.tdd.Vehicles.Controller;
 
 import com.example.tdd.Vehicles.Model.VehiclePriceDetails;
 import com.example.tdd.Vehicles.Service.VehiclePriceService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -16,8 +17,8 @@ import javax.validation.Valid;
 @RequestMapping("/price")
 @Validated
 public class VehiclePriceController {
-
-    private VehiclePriceService vehiclePriceService=new VehiclePriceService();
+    @Autowired
+    private VehiclePriceService vehiclePriceService;
 
     @PostMapping
     public ResponseEntity<String> addVehiclePrice(@Valid @RequestBody VehiclePriceDetails vehiclePriceDetails) {
